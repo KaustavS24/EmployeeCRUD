@@ -19,13 +19,14 @@ public class EmployeeServices {
 	
 	public long addEmployee(Employee employee) 
 	{
-		employee.setEmpId(++empIdCounter);
+		long lastId = dao.getLastEmployeeId();
+		employee.setEmpId(++lastId);
 		
 		//empMap.put(empIdCounter, employee);
 		//empIdCounter++;
 		
 		
-		return employee.getEmpId();
+		return dao.addEmployee(employee);
 	}
 	
 	public String getEmployee()
