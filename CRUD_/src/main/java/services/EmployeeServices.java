@@ -12,20 +12,26 @@ import dao.Dao;
 public class EmployeeServices {
 	
 	private static HashMap<Long, Employee> empMap = new HashMap<Long, Employee>();
-	Dao dao = new Dao();
+	Dao dao;
+	
+	public void setDao(Dao dao) {
+		this.dao = dao;
+	}
+
 	Long empIdCounter = dao.getLastEmployeeId();
 	
 	//private static long empIdCounter = 1000;
 	
 	public long addEmployee(Employee employee) 
 	{
-		employee.setEmpId(++empIdCounter);
+		long lastId = dao.getLastEmployeeId();
+		employee.setEmpId(++lastId);
 		
 		//empMap.put(empIdCounter, employee);
 		//empIdCounter++;
 		
 		
-		return employee.getEmpId();
+		return dao.addEmployee(employee);
 	}
 	
 	public String getEmployee()

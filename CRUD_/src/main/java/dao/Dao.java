@@ -184,7 +184,7 @@ public class Dao {
 	
 	public long getLastEmployeeId()
 	{
-		long id = 0;
+		long id = 1000;
 		try 
 		{
 			String query = "select empId from Employee where rownum <=1 order by empId desc";

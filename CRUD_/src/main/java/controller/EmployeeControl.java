@@ -8,9 +8,13 @@ import model.Employee;
 public class EmployeeControl {
 
 		Scanner s = new Scanner(System.in);
-		EmployeeServices emp = new EmployeeServices();
+		EmployeeServices emp;
 	
 		
+		public void setEmp(EmployeeServices emp) {
+			this.emp = emp;
+		}
+
 		public long addEmployee()
 		{
 			try
