@@ -18,12 +18,13 @@ public class EmployeeServices {
 		this.dao = dao;
 	}
 
-	Long empIdCounter = dao.getLastEmployeeId();
+	
 	
 	//private static long empIdCounter = 1000;
 	
 	public long addEmployee(Employee employee) 
 	{
+		Long empIdCounter = dao.getLastEmployeeId();
 		long lastId = dao.getLastEmployeeId();
 		employee.setEmpId(++lastId);
 		
