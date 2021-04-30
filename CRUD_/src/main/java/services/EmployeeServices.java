@@ -6,55 +6,55 @@ import java.util.List;
 
 import model.Employee;
 import dao.Dao;
+import dao.EmployeeDaoInt;
 
 
 
-public class EmployeeServices {
+public class EmployeeServices implements EmployeeDaoInt {
 	
-	private static HashMap<Long, Employee> empMap = new HashMap<Long, Employee>();
-	Dao dao;
+	//private static HashMap<Long, Employee> empMap = new HashMap<Long, Employee>();
+	EmployeeDaoInt dao;;
 	
-	public void setDao(Dao dao) {
-		this.dao = dao;
-	}
+	
 
-	Long empIdCounter = dao.getLastEmployeeId();
+	
 	
 	//private static long empIdCounter = 1000;
 	
-	public long addEmployee(Employee employee) 
+	public void setDao(EmployeeDaoInt dao) {
+		this.dao = dao;
+	}
+
+	public void addEmployee(Employee employee) 
 	{
-		long lastId = dao.getLastEmployeeId();
-		employee.setEmpId(++lastId);
+		//Long empIdCounter = dao.getLastEmployeeId();
+		//long lastId = dao.getLastEmployeeId();
+		//employee.setEmpId(++lastId);
 		
 		//empMap.put(empIdCounter, employee);
 		//empIdCounter++;
 		
 		
-		return dao.addEmployee(employee);
+		dao.addEmployee(employee);
 	}
 	
-	public String getEmployee()
+	public List<Employee> getEmployee()
 	{
-		empMap = dao.getEmployee();
-		List<Employee> list = new ArrayList<Employee>(empMap.values());
-		return list.toString();
-	}
-	
-	public Employee searchById(long id)
-	{
-		//if(empMap.containsKey(id))
-		//{
-			//return empMap.get(id);
-		//}
-		//return null;
+		List<Employee> list = dao.getEmployee();
+		return list;
 		
-		Employee em = new Employee();
-		em = dao.getEmployeebyId(id);
-		return em;
+		//empMap = dao.getEmployee();
+		//List<Employee> list = new ArrayList<Employee>(empMap.values());
+		//return list.toString();
 	}
 	
-	public boolean deleteEmployee(long id)
+	public Employee getEmployeebyId(long id) {
+		Employee em = dao.getEmployeebyId(id);
+		return em;
+		
+	}
+	
+	public void deleteEmployee(long id)
 	{
 		//if(empMap.containsKey(id))
 		//{
@@ -63,11 +63,11 @@ public class EmployeeServices {
 		//}
 		//return false;
 		
-		boolean rs = dao.deleteEmployee(id);
-		return rs;
+		 dao.deleteEmployee(id);
+		
 	}
 	
-	public long updatEmployeeName(String name, long id)
+	public void updateEmployeeName(String name, long id)
 	{
 		//if (empMap.containsKey(id))
 		//{
@@ -76,18 +76,18 @@ public class EmployeeServices {
 		//}
 		//return 0;
 		
-		boolean rs = dao.updateEmployeeName(name, id);
-		if (rs)
-		{
-			return id;
-		}
-		else
-		{
-			return 0;
-		}
+		dao.updateEmployeeName(name, id);
+		//if (rs)
+		//{
+			//return id;
+		//}
+		//else
+		//{
+			//return 0;
+		//}
 	}
 	
-	public long updatEmployeeAge(int age, long id)
+	public void updateEmployeeAge(int age, long id)
 	{
 		//if (empMap.containsKey(id))
 		//{
@@ -96,18 +96,18 @@ public class EmployeeServices {
 		//}
 		//return 0;
 		
-		Boolean rs = dao.updateEmployeeAge(age, id);
-		if (rs)
-		{
-			return id; 
-		}
-		else
-		{
-			return 0;
-		}
+		dao.updateEmployeeAge(age, id);
+		//if (rs)
+		//{
+			//return id; 
+	//	}
+		//else
+		//{
+			//return 0;
+		//}
 	}
 	
-	public long updatEmployeeAddress(String address, long id)
+	public void updateEmployeeAddress(String address, long id)
 	{
 		//if (empMap.containsKey(id))
 		//{
@@ -116,15 +116,24 @@ public class EmployeeServices {
 		//}
 		//return 0;
 		
-		boolean rs = dao.updateEmployeeAddress(address, id);
-		if (rs)
-		{
-			return id;
-		}
-		else
-		{
-			return 0;
-		}
+		dao.updateEmployeeAddress(address, id);
+	//	if (rs)
+		//{
+		//	return id;
+		//}
+		//else
+		//{
+			//return 0;
+		//}
 	}
+
+
+
+	
+	
+
+
+
+	
 
 }

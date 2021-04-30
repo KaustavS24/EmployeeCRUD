@@ -1,21 +1,23 @@
 package controller;
 
+import java.util.List;
 import java.util.Scanner;
 
+import dao.EmployeeDaoInt;
 import services.EmployeeServices;
 import model.Employee;
 
 public class EmployeeControl {
 
 		Scanner s = new Scanner(System.in);
-		EmployeeServices emp;
 	
-		
-		public void setEmp(EmployeeServices emp) {
+	
+		EmployeeDaoInt emp;
+		public void setEmp(EmployeeDaoInt emp) {
 			this.emp = emp;
 		}
 
-		public long addEmployee()
+		public void addEmployee()
 		{
 			try
 			{
@@ -32,19 +34,25 @@ public class EmployeeControl {
 				e.setEmpName(name);
 				e.setEmpAge(age);
 				e.setEmpAddress(address);
-				return emp.addEmployee(e);
+				//return emp.addEmployee(e);
+				
+				emp.addEmployee(e);
 			}
 			catch(Exception e)
 			{
-				System.out.print("Add did not immplement");
+				//System.out.print("Add did not immplement");
+				e.printStackTrace();
 			}
 			
-			return 0;
+			
 		}
 		
-		public String displayallEmployees()
+		public List<Employee> displayallEmployees()
 		{
-			return emp.getEmployee();
+		
+			List<Employee> list = emp.getEmployee();
+			return list;
+			//	return emp.getEmployee();
 		}
 		
 		public Employee displayEmployeeById()
@@ -53,7 +61,7 @@ public class EmployeeControl {
 			{
 				System.out.print("Enter your employee id - ");
 				String id = s.nextLine();
-				return emp.searchById(Long.parseLong(id));
+				return emp.getEmployeebyId(Long.parseLong(id));
 			}
 			catch(Exception e)
 			{
@@ -62,19 +70,19 @@ public class EmployeeControl {
 			return null;
 		}
 		
-		public boolean deleteEmployee()
+		public void deleteEmployee()
 		{
 			try
 			{
 				System.out.print("Enter employee id - ");
 				String id = s.nextLine();
-				return emp.deleteEmployee(Long.parseLong(id));
+				emp.deleteEmployee(Long.parseLong(id));
 			}
 			catch(Exception e)
 			{
 				System.out.print("Delete operation did not implement.");
 			}
-			return false;
+	
 		}
 		
 		public void updateDetails()
@@ -99,40 +107,49 @@ public class EmployeeControl {
 						case 1:
 							System.out.print("Enter the updated name - ");
 							String uName = s.nextLine();
-							long updatedNameId = emp.updatEmployeeName(uName, longId);
-							if (updatedNameId != 0)
-							{
-								System.out.println("Name is updated for employee id " + updatedNameId);
-							}
-							else
-							{
-								System.out.println("Employee not found.");
-							}
+							emp.updateEmployeeName(uName, longId);
+							System.out.println("Name updated for " + longId);
 							break;
+							//long updatedNameId = emp.updatEmployeeName(uName, longId);
+							//if (updatedNameId != 0)
+							//{
+								//System.out.println("Name is updated for employee id " + updatedNameId);
+							//}
+							//else
+						//	{
+							//	System.out.println("Employee not found.");
+							//}
+							
 						case 2:
 							System.out.println("Enter the updated age - ");
 							String uAge = s.nextLine();
-							long updatedAgeId = emp.updatEmployeeAge(Integer.parseInt(uAge), longId);
-							if (updatedAgeId != 0)
-							{
-								System.out.print("Age has been updated for employee id " + updatedAgeId);
-							}
-							else
-							{
-								System.out.print("Employee not present");
-							}
+							emp.updateEmployeeAge(Integer.parseInt(uAge), longId);
+							System.out.println("Age updated for " + longId);
+							break;
+							//long updatedAgeId = emp.updatEmployeeAge(Integer.parseInt(uAge), longId);
+							//if (updatedAgeId != 0)
+							//{
+								//System.out.print("Age has been updated for employee id " + updatedAgeId);
+							//}
+							//else
+							//{
+								//System.out.print("Employee not present");
+							//}
 						case 3:
 							System.out.println("Enter the updated address - ");
 							String address = s.nextLine();
-							long updatedAddressId = emp.updatEmployeeAddress(address, longId);
-							if (updatedAddressId != 0)
-							{
-								System.out.print("Address is changed for employee id " + updatedAddressId);
-							}
-							else
-							{
-								System.out.print("Employee not found");
-							}
+							emp.updateEmployeeAddress(address, longId);
+							System.out.println("Address updated for " + longId);
+							break;
+							//long updatedAddressId = emp.updatEmployeeAddress(address, longId);
+							//if (updatedAddressId != 0)
+							//{
+								//System.out.print("Address is changed for employee id " + updatedAddressId);
+							//}
+							//else
+							//{
+								//System.out.print("Employee not found");
+							//}
 						case 4:
 							temp = false;
 							break;
@@ -181,22 +198,28 @@ public class EmployeeControl {
 				String rawChoice1 = s.nextLine();
 				System.out.println("Your choice is " + rawChoice1);
 				int choice1 = Integer.MIN_VALUE;
-				choice1 = Integer.parseInt(rawChoice1);
+				
 				
 				try
 				{
+					choice1 = Integer.parseInt(rawChoice1);
 					switch(choice1)
 					{
 						case 1:
-							long id = addEmployee();
-							System.out.print("Generated Employe ID  " + id);
+							addEmployee();
+							System.out.print("employee details added");
 							System.out.println();
 							break;
 							
 						case 2:
 							
-							System.out.println(displayallEmployees());
-							System.out.println();
+							List<Employee> list = displayallEmployees();
+							for (Employee display : list)
+							{
+								System.out.println(display);
+							}
+							//System.out.println(displayallEmployees());
+							//System.out.println();
 							break;
 							
 						case 3:
@@ -213,14 +236,14 @@ public class EmployeeControl {
 							break;
 							
 						case 4:
-							if(deleteEmployee())
-							{
-								System.out.println("Employee details has been deleted.");
-							}
-							else
-							{
-								System.out.println("Employee not found.");
-							}
+							deleteEmployee();
+							//{
+							System.out.println("Employee details has been deleted.");
+							//}
+							//else
+							//{
+								//System.out.println("Employee not found.");
+							//}
 							break;
 							
 						case 5:
