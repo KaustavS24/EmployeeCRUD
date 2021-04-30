@@ -111,15 +111,7 @@ public class EmployeeControl {
 							emp.updateEmployeeName(uName, longId);
 							System.out.println("Name updated for " + longId);
 							break;
-							//long updatedNameId = emp.updatEmployeeName(uName, longId);
-							//if (updatedNameId != 0)
-							//{
-								//System.out.println("Name is updated for employee id " + updatedNameId);
-							//}
-							//else
-						//	{
-							//	System.out.println("Employee not found.");
-							//}
+						
 							
 						case 2:
 							System.out.println("Enter the updated age - ");
@@ -127,30 +119,14 @@ public class EmployeeControl {
 							emp.updateEmployeeAge(Integer.parseInt(uAge), longId);
 							System.out.println("Age updated for " + longId);
 							break;
-							//long updatedAgeId = emp.updatEmployeeAge(Integer.parseInt(uAge), longId);
-							//if (updatedAgeId != 0)
-							//{
-								//System.out.print("Age has been updated for employee id " + updatedAgeId);
-							//}
-							//else
-							//{
-								//System.out.print("Employee not present");
-							//}
+		
 						case 3:
 							System.out.println("Enter the updated address - ");
 							String address = s.nextLine();
 							emp.updateEmployeeAddress(address, longId);
 							System.out.println("Address updated for " + longId);
 							break;
-							//long updatedAddressId = emp.updatEmployeeAddress(address, longId);
-							//if (updatedAddressId != 0)
-							//{
-								//System.out.print("Address is changed for employee id " + updatedAddressId);
-							//}
-							//else
-							//{
-								//System.out.print("Employee not found");
-							//}
+						
 						case 4:
 							temp = false;
 							break;
@@ -219,8 +195,6 @@ public class EmployeeControl {
 							{
 								System.out.println(display);
 							}
-							//System.out.println(displayallEmployees());
-							//System.out.println();
 							break;
 							
 						case 3:
@@ -240,11 +214,6 @@ public class EmployeeControl {
 							deleteEmployee();
 							//{
 							System.out.println("Employee details has been deleted.");
-							//}
-							//else
-							//{
-								//System.out.println("Employee not found.");
-							//}
 							break;
 							
 						case 5:
