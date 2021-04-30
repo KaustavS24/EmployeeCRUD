@@ -10,7 +10,7 @@ import dao.EmployeeDaoInt;
 
 
 
-public class EmployeeServices implements EmployeeDaoInt {
+public class EmployeeServices implements EmployeeServicesInt {
 	
 	//private static HashMap<Long, Employee> empMap = new HashMap<Long, Employee>();
 	EmployeeDaoInt dao;;

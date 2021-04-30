@@ -5,15 +5,16 @@ import java.util.Scanner;
 
 import dao.EmployeeDaoInt;
 import services.EmployeeServices;
+import services.EmployeeServicesInt;
 import model.Employee;
 
 public class EmployeeControl {
 
 		Scanner s = new Scanner(System.in);
 	
-	
-		EmployeeDaoInt emp;
-		public void setEmp(EmployeeDaoInt emp) {
+
+		EmployeeServicesInt emp;
+		public void setEmp(EmployeeServicesInt emp) {
 			this.emp = emp;
 		}
 
