@@ -1,4 +1,4 @@
-package com.dao.rowmapper;
+package dao.rowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,8 +19,8 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 		emp.setEmpAddress(rs.getString("empAddress"));
 		
 		return emp;
+
 	}
 
-	
 
 }

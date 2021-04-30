@@ -1,8 +1,8 @@
 package dao;
 
 //import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+//import java.sql.PreparedStatement;
+//mport java.sql.ResultSet;
 //import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -13,8 +13,7 @@ import java.util.Map;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
-import com.dao.rowmapper.EmployeeRowMapper;
-
+import dao.rowMapper.EmployeeRowMapper;
 import model.Employee;
 //import connectionUtil.ConnectionUtil;
 
